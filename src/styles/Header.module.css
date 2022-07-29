@@ -1,0 +1,31 @@
+.Div {
+  @apply max-w-7xl mx-auto flex flex-wrap py-4 px-5 2xl:px-0 flex-col md:flex-row items-center;
+}
+
+.PagesLink {
+  @apply mr-5 text-gray-800 hover:text-indigo-500;
+}
+
+.SignIn {
+  @apply inline-flex items-center shadow-md shadow-indigo-500/80 text-white bg-indigo-500 border-0 py-[0.35rem] px-4 focus:outline-none hover:bg-indigo-500/90 rounded-full text-base mt-4 md:mt-0;
+}
+
+.Nav {
+  @apply md:ml-auto mr-6 flex flex-wrap items-center text-base justify-center;
+}
+
+.Span {
+  @apply text-xl hover:animate-pulse hover:text-red-500/90;
+}
+
+.A {
+  @apply flex font-medium items-center text-gray-900 mb-4 md:mb-0;
+}
+
+.Header {
+  @apply text-gray-600;
+}
+
+.Buttons {
+  @apply flex items-center space-x-4;
+}
