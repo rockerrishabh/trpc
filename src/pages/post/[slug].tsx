@@ -3,6 +3,7 @@ import { unstable_getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
+import Loader from "../../components/Loading/Loader";
 import { trpc } from "../../utils/trpc";
 import { authOptions } from "../api/auth/[...nextauth]";
 
@@ -12,8 +13,15 @@ function Post() {
   const { data: session } = useSession();
   const utils = trpc.useContext();
   const { data, isLoading, error } = trpc.useQuery(["posts.bySlug", { slug }]);
+  if (isLoading) {
+    return (
+      <Layout className="max-w-7xl mx-auto" title="Blog - Loading...">
+        <Loader />
+      </Layout>
+    );
+  }
   return (
-    <Layout title={`Blog - ${data?.title}`}>
+    <Layout className="max-w-7xl mx-auto" title={`Blog - ${data?.title}`}>
       <div>
         <h2>{data?.title}</h2>
         <p>{data?.body}</p>
