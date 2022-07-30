@@ -9,11 +9,19 @@ import { authOptions } from "./api/auth/[...nextauth]";
 const Home: NextPage = () => {
   const { data, isLoading, error } = trpc.useQuery(["posts.all"]);
   if (isLoading) {
-    return <Layout title="Blog - Loading...">Loading...</Layout>;
+    return (
+      <Layout className="max-w-7xl mx-auto" title="Blog">
+        Loading...
+      </Layout>
+    );
   }
 
   if (error) {
-    return <p>Error Happened</p>;
+    return (
+      <Layout className="max-w-7xl mx-auto" title="Blog">
+        Error Happened
+      </Layout>
+    );
   }
   return (
     <Layout title="Blog" className={styles.App}>

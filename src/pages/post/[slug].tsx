@@ -15,7 +15,7 @@ function Post() {
   const { data, isLoading, error } = trpc.useQuery(["posts.bySlug", { slug }]);
   if (isLoading) {
     return (
-      <Layout className="max-w-7xl mx-auto" title="Blog - Loading...">
+      <Layout className="max-w-7xl mx-auto" title="Blog">
         <Loader />
       </Layout>
     );
