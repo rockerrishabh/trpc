@@ -4,14 +4,14 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
-} from "next/document";
+} from 'next/document'
 
-const APP_NAME = "Blog";
-const APP_DESCRIPTION = "Blog";
+const APP_NAME = 'Blog'
+const APP_DESCRIPTION = 'Blog'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    return await Document.getInitialProps(ctx);
+    return await Document.getInitialProps(ctx)
   }
 
   render() {
@@ -45,6 +45,6 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }

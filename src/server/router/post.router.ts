@@ -1,13 +1,13 @@
-import { createRouter } from "../createRouter";
-import { Prisma } from "@prisma/client";
+import { createRouter } from '../createRouter'
+import { Prisma } from '@prisma/client'
 
-import { TRPCError } from "@trpc/server";
+import { TRPCError } from '@trpc/server'
 import {
   createPostSchema,
   editPostSchema,
   getSinglePostSchema,
   getSinglePostSchemaBySlug,
-} from "../schema/post.schema";
+} from '../schema/post.schema'
 
 const defaultPostSelect = Prisma.validator<
   Prisma.PostsSelect & Prisma.UserArgs
@@ -28,17 +28,17 @@ const defaultPostSelect = Prisma.validator<
       image: true,
     },
   },
-});
+})
 
 export const postsRouter = createRouter()
-  .mutation("add", {
+  .mutation('add', {
     input: createPostSchema,
     async resolve({ ctx, input }) {
       if (!ctx.session) {
         new TRPCError({
-          code: "FORBIDDEN",
-          message: "Can not create a post while logged out",
-        });
+          code: 'FORBIDDEN',
+          message: 'Can not create a post while logged out',
+        })
       }
       const post = await ctx.prisma.posts.create({
         data: {
@@ -49,12 +49,12 @@ export const postsRouter = createRouter()
           author: { connect: { id: ctx.session?.user.id } },
         },
         select: defaultPostSelect,
-      });
-      return post;
+      })
+      return post
     },
   })
   // read
-  .query("all", {
+  .query('all', {
     async resolve({ ctx }) {
       /**
        * For pagination you can have a look at this docs site
@@ -67,40 +67,40 @@ export const postsRouter = createRouter()
         },
         select: defaultPostSelect,
         orderBy: {
-          updatedAt: "desc",
+          updatedAt: 'desc',
         },
-      });
+      })
     },
   })
-  .query("bySlug", {
+  .query('bySlug', {
     input: getSinglePostSchemaBySlug,
     async resolve({ ctx, input }) {
-      const byslug = input.slug;
+      const byslug = input.slug
       const post = await ctx.prisma.posts.findFirst({
         where: { slug: byslug },
         select: defaultPostSelect,
-      });
+      })
       if (!post) {
         throw new TRPCError({
-          code: "NOT_FOUND",
+          code: 'NOT_FOUND',
           message: `No post with slug '${byslug}'`,
-        });
+        })
       }
-      return post;
+      return post
     },
   })
 
   // update
-  .mutation("edit", {
+  .mutation('edit', {
     input: editPostSchema,
     async resolve({ ctx, input }) {
       if (!ctx.session?.user) {
         new TRPCError({
-          code: "FORBIDDEN",
-          message: "Can not edit a post while logged out",
-        });
+          code: 'FORBIDDEN',
+          message: 'Can not edit a post while logged out',
+        })
       }
-      const { id, title, body, slug, featuredImage } = input;
+      const { id, title, body, slug, featuredImage } = input
       const post = await ctx.prisma.posts.update({
         where: { id },
         data: {
@@ -111,71 +111,71 @@ export const postsRouter = createRouter()
           author: { connect: { id: ctx.session?.user?.id } },
         },
         select: defaultPostSelect,
-      });
-      return post;
+      })
+      return post
     },
   })
   // delete
-  .mutation("delete", {
+  .mutation('delete', {
     input: getSinglePostSchema,
     async resolve({ ctx, input }) {
       if (!ctx.session?.user) {
         new TRPCError({
-          code: "FORBIDDEN",
-          message: "Can not delete a post while logged out",
-        });
+          code: 'FORBIDDEN',
+          message: 'Can not delete a post while logged out',
+        })
       }
-      const { id } = input;
-      await ctx.prisma.posts.delete({ where: { id } });
+      const { id } = input
+      await ctx.prisma.posts.delete({ where: { id } })
       return {
         id,
-      };
+      }
     },
   })
 
-  .mutation("publish-post", {
+  .mutation('publish-post', {
     input: getSinglePostSchema,
     async resolve({ ctx, input }) {
       if (!ctx.session?.user) {
         new TRPCError({
-          code: "FORBIDDEN",
-          message: "Can not create a post while logged out",
-        });
+          code: 'FORBIDDEN',
+          message: 'Can not create a post while logged out',
+        })
       }
-      const { id } = input;
+      const { id } = input
       const posts = await ctx.prisma.posts.update({
         where: { id },
         data: { published: true },
         select: defaultPostSelect,
-      });
-      return posts;
+      })
+      return posts
     },
   })
-  .mutation("unpublish-post", {
+  .mutation('unpublish-post', {
     input: getSinglePostSchema,
     async resolve({ ctx, input }) {
       if (!ctx.session?.user) {
         new TRPCError({
-          code: "FORBIDDEN",
-          message: "Can not create a post while logged out",
-        });
+          code: 'FORBIDDEN',
+          message: 'Can not create a post while logged out',
+        })
       }
-      const { id } = input;
+      const { id } = input
       const posts = await ctx.prisma.posts.update({
         where: { id },
         data: { published: false },
         select: defaultPostSelect,
-      });
-      return posts;
+      })
+      return posts
     },
   })
-  .query("my-posts", {
+  .query('my-posts', {
     async resolve({ ctx }) {
       if (!ctx.session?.user) {
         new TRPCError({
-          code: "FORBIDDEN",
-          message: "Can not get my posts while logged out",
-        });
+          code: 'FORBIDDEN',
+          message: 'Can not get my posts while logged out',
+        })
       }
       const posts = await ctx.prisma.posts.findMany({
         where: {
@@ -183,15 +183,15 @@ export const postsRouter = createRouter()
         },
         select: defaultPostSelect,
         orderBy: {
-          updatedAt: "desc",
+          updatedAt: 'desc',
         },
-      });
+      })
       if (!posts) {
         throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "No posts found",
-        });
+          code: 'NOT_FOUND',
+          message: 'No posts found',
+        })
       }
-      return posts;
+      return posts
     },
-  });
+  })

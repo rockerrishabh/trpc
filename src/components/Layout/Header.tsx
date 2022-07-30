@@ -1,11 +1,11 @@
-import { signIn, signOut, useSession } from "next-auth/react";
-import Head from "next/head";
-import Link from "next/link";
-import styles from "../../styles/Header.module.css";
-import Switcher from "../DarkMode/Switcher";
+import { signIn, signOut, useSession } from 'next-auth/react'
+import Head from 'next/head'
+import Link from 'next/link'
+import styles from '../../styles/Header.module.css'
+import Switcher from '../DarkMode/Switcher'
 
 function Header({ title }: { title?: string }) {
-  const { data: session } = useSession();
+  const { data: session } = useSession()
   return (
     <div>
       <Head>
@@ -43,14 +43,14 @@ function Header({ title }: { title?: string }) {
           <div className={styles.Buttons}>
             {session ? (
               <button
-                onClick={() => signOut({ callbackUrl: "/" })}
+                onClick={() => signOut({ callbackUrl: '/' })}
                 className={styles.SignIn}
               >
                 Sign Out
               </button>
             ) : (
               <button
-                onClick={() => signIn("google", { callbackUrl: "/" })}
+                onClick={() => signIn('google', { callbackUrl: '/' })}
                 className={styles.SignIn}
               >
                 Sign In
@@ -60,7 +60,7 @@ function Header({ title }: { title?: string }) {
         </div>
       </header>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header

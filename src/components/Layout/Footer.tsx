@@ -1,5 +1,5 @@
-import Link from "next/link";
-import styles from "../../styles/Footer.module.css";
+import Link from 'next/link'
+import styles from '../../styles/Footer.module.css'
 
 function Footer() {
   return (
@@ -8,7 +8,7 @@ function Footer() {
         <Link href="/">
           <a className={styles.A}>
             <span
-              className={`${styles.Span} dark:text-gray-200 dark:hover:text-red-500/90 hover:text-red-500/90`}
+              className={`${styles.Span} hover:text-red-500/90 dark:text-gray-200 dark:hover:text-red-500/90`}
             >
               Blog
             </span>
@@ -29,7 +29,7 @@ function Footer() {
         </Link>
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer
