@@ -1,8 +1,6 @@
 import { useNProgress } from "@tanem/react-nprogress";
 
-const Loading: React.FC<{ isRouteChanging: boolean }> = ({
-  isRouteChanging,
-}) => {
+const Loading = ({ isRouteChanging }: { isRouteChanging: boolean }) => {
   const { animationDuration, isFinished, progress } = useNProgress({
     isAnimating: isRouteChanging,
   });

@@ -15,15 +15,17 @@ function Post() {
   const { data, isLoading, error } = trpc.useQuery(["posts.bySlug", { slug }]);
   if (isLoading) {
     return (
-      <Layout className="max-w-7xl mx-auto" title="Blog">
+      <Layout title="">
         <Loader />
       </Layout>
     );
   }
   return (
-    <Layout className="max-w-7xl mx-auto" title={`Blog - ${data?.title}`}>
+    <Layout title={` - ${data?.title}`}>
       <div>
-        <h2>{data?.title}</h2>
+        <h2 className="text-2xl text-blue-500 hover:text-red-500">
+          {data?.title}
+        </h2>
         <p>{data?.body}</p>
       </div>
     </Layout>
