@@ -1,5 +1,5 @@
 .Div {
-  @apply max-w-7xl mx-auto flex flex-wrap py-4 px-5 2xl:px-0 flex-col md:flex-row items-center;
+  @apply mx-auto flex max-w-[85rem] flex-col flex-wrap items-center py-4 px-5 md:flex-row 2xl:px-0;
 }
 
 .PagesLink {
@@ -7,11 +7,11 @@
 }
 
 .SignIn {
-  @apply inline-flex items-center shadow-md shadow-indigo-500/80 text-white bg-indigo-500 border-0 py-[0.35rem] px-4 focus:outline-none hover:bg-indigo-500/90 rounded-full text-base mt-4 md:mt-0;
+  @apply mt-4 inline-flex items-center rounded-full border-0 bg-indigo-500 py-[0.35rem] px-4 text-base text-white shadow-md shadow-indigo-500/80 hover:bg-indigo-500/90 focus:outline-none md:mt-0;
 }
 
 .Nav {
-  @apply md:ml-auto mr-6 flex flex-wrap items-center text-base justify-center;
+  @apply mr-6 flex flex-wrap items-center justify-center text-base md:ml-auto;
 }
 
 .Span {
@@ -19,7 +19,7 @@
 }
 
 .A {
-  @apply flex font-medium items-center text-gray-900 mb-4 md:mb-0;
+  @apply mb-4 flex items-center font-medium text-gray-900 md:mb-0;
 }
 
 .Header {

@@ -8,7 +8,7 @@ function Loader() {
   }, [])
   return (
     <div>
-      <ClipLoader color="#7e20e3" loading={loading} size={50} />
+      <ClipLoader color="#03fcdb" loading={loading} size={50} />
     </div>
   )
 }

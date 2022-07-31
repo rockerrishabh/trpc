@@ -14,7 +14,7 @@ export default function Layout({
   return (
     <>
       <Header title={title} />
-      <div className={`mx-auto max-w-7xl  ${className}`}>{children}</div>
+      <div className={`mx-auto max-w-[80rem]  ${className}`}>{children}</div>
       <Footer />
     </>
   )

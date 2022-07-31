@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next'
 import { unstable_getServerSession } from 'next-auth'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import Layout from '../../components/Layout'
 import Loader from '../../components/Loading/Loader'
 import { trpc } from '../../utils/trpc'
@@ -13,6 +14,7 @@ function Post() {
   const { data: session } = useSession()
   const utils = trpc.useContext()
   const { data, isLoading, error } = trpc.useQuery(['posts.bySlug', { slug }])
+
   if (isLoading) {
     return (
       <Layout title="">
@@ -20,16 +22,18 @@ function Post() {
       </Layout>
     )
   }
-  return (
-    <Layout title={` - ${data?.title}`}>
-      <div>
-        <h2 className="text-2xl text-blue-500 hover:text-red-500">
-          {data?.title}
-        </h2>
-        <p>{data?.body}</p>
-      </div>
-    </Layout>
-  )
+  if (data) {
+    return (
+      <Layout title={` - ${data?.title}`}>
+        <div>
+          <h2 className="text-2xl text-blue-500 hover:text-red-500">
+            {data?.title}
+          </h2>
+          <p>{data?.body}</p>
+        </div>
+      </Layout>
+    )
+  }
 }
 
 export default Post

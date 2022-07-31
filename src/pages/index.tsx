@@ -17,18 +17,18 @@ const Home: NextPage = () => {
   }
   return (
     <Layout title="" className={styles.App}>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-rows-1 gap-2 overflow-hidden md:grid-cols-3 md:gap-5">
         {data?.map((post) => (
           <div
-            className="group cursor-pointer rounded-lg border p-5 hover:border-gray-500 dark:border-gray-500 dark:hover:border-gray-300"
+            className="group cursor-pointer overflow-hidden rounded-lg border p-3 hover:border-gray-500 dark:border-gray-500 dark:hover:border-gray-300 md:p-5"
             key={post.id}
           >
             <Link href={`/post/${post.slug}`}>
-              <a className="overflow-hidden group-hover:text-indigo-500 group-hover:underline">
+              <a className="line-clamp-3 group-hover:text-indigo-500 group-hover:underline">
                 {post.title}
               </a>
             </Link>
-            <p className="overflow-hidden truncate">{post.body}</p>
+            <p className="line-clamp-3">{post.body}</p>
           </div>
         ))}
       </div>

@@ -40,7 +40,7 @@ export default class MyDocument extends Document {
           <link rel="manifest" href="/manifest.webmanifest" />
           <link rel="shortcut icon" href="/favicon.ico" />
         </Head>
-        <body>
+        <body className="supports-backdrop-blur:bg-white/95 z-40 flex-none bg-white backdrop-blur transition-colors duration-300 dark:bg-slate-900/75 lg:z-50">
           <Main />
           <NextScript />
         </body>

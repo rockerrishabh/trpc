@@ -14,7 +14,7 @@ function Header({ title }: { title?: string }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={styles.Header}>
-        <div className={styles.Div}>
+        <div className={`${styles.Div}`}>
           <Link href="/">
             <a className={styles.A}>
               <span className={`${styles.Span} dark:text-white`}>Blog</span>

@@ -7,11 +7,11 @@
 }
 
 .LinkDiv {
-  @apply inline-flex mt-1 justify-center sm:justify-start;
+  @apply mt-1 inline-flex justify-center sm:justify-start;
 }
 
 .P {
-  @apply text-sm text-gray-500 mt-1;
+  @apply mt-1 text-sm text-gray-500;
 }
 
 .Span {
@@ -19,11 +19,11 @@
 }
 
 .A {
-  @apply flex font-medium items-center text-gray-900;
+  @apply flex items-center font-medium text-gray-900;
 }
 
 .Footer {
-  @apply flex justify-between py-4 px-5 2xl:px-0 flex-col-reverse gap-3 md:gap-0 md:flex-row max-w-7xl mx-auto items-center;
+  @apply mx-auto flex max-w-[85rem] flex-col-reverse items-center justify-between gap-3 py-4 px-5 md:flex-row md:gap-0 2xl:px-0;
 }
 
 .Div {
