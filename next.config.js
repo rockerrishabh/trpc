@@ -1,11 +1,14 @@
 /** @type {import('next').NextConfig} */
-const withPWA = require('next-pwa')
-const nextConfig = withPWA({
+
+const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  pwa: {
-    dest: 'public',
+  experimental: {
+    images: { allowFutureImage: true },
   },
-})
+  images: {
+    domains: ['lh3.googleusercontent.com'],
+  },
+  swcMinify: true,
+}
 
 module.exports = nextConfig

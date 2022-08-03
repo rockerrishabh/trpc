@@ -1,29 +1,26 @@
 import Link from 'next/link'
-import styles from '../../styles/Footer.module.css'
 
 function Footer() {
   return (
-    <footer className={styles.Footer}>
-      <div className={`${styles.Div}`}>
+    <footer className="mx-auto flex max-w-[85rem] flex-col-reverse items-center justify-between gap-3 py-4 px-5 md:flex-row md:gap-0 2xl:px-0">
+      <div className="flex items-center space-x-3">
         <Link href="/">
-          <a className={styles.A}>
-            <span
-              className={`${styles.Span} hover:text-red-500/90 dark:text-gray-200 dark:hover:text-red-500/90`}
-            >
+          <a className="flex items-center font-medium text-gray-900">
+            <span className="text-xl hover:text-red-500/90 dark:text-gray-200 dark:hover:text-red-500/90">
               Blog
             </span>
           </a>
         </Link>
-        <p className={`${styles.P} dark:text-gray-200 `}>© 2022</p>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">© 2022</p>
       </div>
-      <div className={styles.LinkDiv}>
+      <div className="mt-1 inline-flex justify-center sm:justify-start">
         <Link href="/">
-          <a className={`${styles.Privacy} dark:text-gray-200`}>
+          <a className="text-gray-500 hover:text-indigo-500 dark:text-gray-200">
             Privacy Policy
           </a>
         </Link>
         <Link href="/">
-          <a className={`${styles.Terms} dark:text-gray-200`}>
+          <a className="ml-3 text-gray-500 hover:text-indigo-500 dark:text-gray-200">
             Terms and Conditions
           </a>
         </Link>

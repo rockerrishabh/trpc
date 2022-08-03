@@ -1,12 +1,12 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { unstable_getServerSession } from 'next-auth'
 import Link from 'next/link'
-import Layout from '../components/Layout'
-import { trpc } from '../utils/trpc'
-import { authOptions } from './api/auth/[...nextauth]'
+import Layout from '../../../components/Layout'
+import { trpc } from '../../../utils/trpc'
+import { authOptions } from '../../api/auth/[...nextauth]'
 
-const Home: NextPage = () => {
-  const { data, isLoading, error } = trpc.useQuery(['posts.all'])
+const MyPosts: NextPage = () => {
+  const { data, isLoading, error } = trpc.useQuery(['posts.my-posts'])
   if (isLoading) {
     return <Layout title="">Loading...</Layout>
   }
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   }
   return (
     <Layout title="" className="px-2 md:px-5">
-      <div className="grid grid-rows-1 gap-2 overflow-hidden px-4 md:grid-cols-3 md:gap-5">
+      <div className="grid grid-rows-1 gap-2 overflow-hidden md:grid-cols-3 md:gap-5">
         {data?.map((post) => (
           <div
             className="group cursor-pointer overflow-hidden rounded-lg border p-3 hover:border-gray-500 dark:border-gray-500 dark:hover:border-gray-300 md:p-5"
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default MyPosts
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await unstable_getServerSession(

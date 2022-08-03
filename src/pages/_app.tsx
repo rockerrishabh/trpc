@@ -8,6 +8,7 @@ import { SessionProvider } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Loading from '../components/Loading'
+import { Toaster } from 'react-hot-toast'
 
 const baseURL = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
@@ -49,13 +50,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   }, [router.events])
   return (
     <SessionProvider session={session}>
-      <ThemeProvider enableSystem={true} attribute="class">
-        <Loading
-          isRouteChanging={state.isRouteChanging}
-          key={state.loadingKey}
-        />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <div className="supports-backdrop-blur:bg-white/95 z-40 h-screen flex-none bg-white backdrop-blur transition-colors duration-300 dark:bg-slate-900/75 lg:z-50">
+        <ThemeProvider enableSystem={true} attribute="class">
+          <Loading
+            isRouteChanging={state.isRouteChanging}
+            key={state.loadingKey}
+          />
+          <Toaster />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </div>
     </SessionProvider>
   )
 }

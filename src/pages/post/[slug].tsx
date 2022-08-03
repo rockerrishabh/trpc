@@ -12,8 +12,10 @@ function Post() {
   const router = useRouter()
   const slug = router.query.slug as string
   const { data: session } = useSession()
-  const utils = trpc.useContext()
   const { data, isLoading, error } = trpc.useQuery(['posts.bySlug', { slug }])
+  if (error) {
+    return router.push('/404')
+  }
 
   if (isLoading) {
     return (
@@ -22,6 +24,7 @@ function Post() {
       </Layout>
     )
   }
+
   if (data) {
     return (
       <Layout title={` - ${data?.title}`}>
@@ -34,6 +37,7 @@ function Post() {
       </Layout>
     )
   }
+  return router.push('/404')
 }
 
 export default Post
