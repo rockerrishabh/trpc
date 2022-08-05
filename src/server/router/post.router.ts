@@ -87,14 +87,7 @@ export const postsRouter = createRouter()
           cause: 'Post not found',
         })
       }
-      if (post.published === false) {
-        if (ctx?.session) {
-          return post
-        }
-      }
-      if (post.published === true) {
-        return post
-      }
+      return post
     },
   })
 

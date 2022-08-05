@@ -7,6 +7,7 @@ import { ChevronDownIcon } from '@heroicons/react/solid'
 
 function MenuComponent() {
   const { data: session } = useSession()
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>

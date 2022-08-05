@@ -49,7 +49,7 @@ function Create() {
       }
     }
     return (
-      <Layout title="- Create a new Post" className="mx-auto max-w-[80rem]">
+      <Layout title="- Create a new Post" className="mt-5 px-5">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="mt-10 flex flex-col space-y-4"

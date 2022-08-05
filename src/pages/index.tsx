@@ -3,6 +3,7 @@ import { unstable_getServerSession } from 'next-auth'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import { trpc } from '../utils/trpc'
+import NotFound from './404'
 import { authOptions } from './api/auth/[...nextauth]'
 
 const Home: NextPage = () => {
@@ -12,18 +13,18 @@ const Home: NextPage = () => {
   }
 
   if (error) {
-    return <Layout title="">Error Happened</Layout>
+    return <NotFound ErrorCode={error.message} />
   }
   return (
-    <Layout title="" className="px-2 md:px-5">
-      <div className="grid grid-rows-1 gap-2 overflow-hidden px-4 md:grid-cols-3 md:gap-5">
+    <Layout title="" className="mt-5 px-5">
+      <div className="md:grid-row-1 grid grid-rows-1 gap-2 space-y-3 overflow-hidden px-4 md:gap-5">
         {data?.map((post) => (
           <div
-            className="group cursor-pointer overflow-hidden rounded-lg border p-3 hover:border-gray-500 dark:border-gray-500 dark:hover:border-gray-300 md:p-5"
+            className="group flex cursor-pointer flex-col space-y-3 overflow-hidden rounded-md border p-3 hover:border-gray-500 dark:border-gray-500 dark:hover:border-gray-300 md:p-5"
             key={post.id}
           >
             <Link href={`/post/${post.slug}`}>
-              <a className="line-clamp-3 group-hover:text-indigo-500 group-hover:underline">
+              <a className="text-xl font-medium line-clamp-3 group-hover:text-indigo-500 group-hover:underline">
                 {post.title}
               </a>
             </Link>

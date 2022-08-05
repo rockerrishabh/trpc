@@ -10,6 +10,7 @@ import Layout from '../../../../components/Layout'
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 import Loader from '../../../../components/Loading/Loader'
+import NotFound from '../../../404'
 
 function Edit() {
   const router = useRouter()
@@ -25,12 +26,8 @@ function Edit() {
     formState: { errors },
   } = useForm<EditPostInput>()
 
-  if (status === 'loading') {
-    return (
-      <Layout title="- Edit Post">
-        <Loader />
-      </Layout>
-    )
+  if (error) {
+    return <NotFound ErrorCode={error.message} />
   }
 
   if (session) {
@@ -52,7 +49,7 @@ function Edit() {
       }
     }
     return (
-      <Layout title="- Edit Post" className="mx-auto max-w-[80rem]">
+      <Layout title="- Edit Post" className="mt-5 px-5">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="mt-10 flex flex-col space-y-4"

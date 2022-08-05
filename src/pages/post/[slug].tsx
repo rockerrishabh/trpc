@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import Layout from '../../components/Layout'
 import Loader from '../../components/Loading/Loader'
 import { trpc } from '../../utils/trpc'
+import NotFound from '../404'
 import { authOptions } from '../api/auth/[...nextauth]'
 
 function Post() {
@@ -14,30 +15,31 @@ function Post() {
   const { data: session } = useSession()
   const { data, isLoading, error } = trpc.useQuery(['posts.bySlug', { slug }])
   if (error) {
-    return router.push('/404')
+    return <NotFound ErrorCode={error.message} />
   }
-
-  if (isLoading) {
-    return (
-      <Layout title="">
-        <Loader />
-      </Layout>
-    )
-  }
-
-  if (data) {
-    return (
-      <Layout title={` - ${data?.title}`}>
-        <div>
-          <h2 className="text-2xl text-blue-500 hover:text-red-500">
-            {data?.title}
-          </h2>
-          <p>{data?.body}</p>
-        </div>
-      </Layout>
-    )
-  }
-  return router.push('/404')
+  return (
+    <Layout className="mt-5 px-5" title={` - ${data?.title}`}>
+      <div>
+        {isLoading && <Loader />}
+        {data && data.published === true && (
+          <>
+            <h2 className="text-2xl font-medium text-blue-500 hover:text-red-500">
+              {data?.title}
+            </h2>
+            <p>{data?.body}</p>
+          </>
+        )}
+        {data && data.published === false && session && (
+          <>
+            <h2 className="text-2xl font-medium text-blue-500 hover:text-red-500">
+              {data?.title}
+            </h2>
+            <p>{data?.body}</p>
+          </>
+        )}
+      </div>
+    </Layout>
+  )
 }
 
 export default Post
