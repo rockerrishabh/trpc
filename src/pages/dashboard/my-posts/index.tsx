@@ -85,7 +85,7 @@ const MyPosts = () => {
       <Link href="/dashboard/my-posts/create">
         <a className="mb-4 flex w-full justify-end px-4">Create a new Post</a>
       </Link>
-      <div className="grid grid-rows-1 gap-2 space-y-3 overflow-hidden md:grid-cols-1 md:gap-5">
+      <div className="mb-16 grid grid-rows-1 gap-2 space-y-3 overflow-hidden md:grid-cols-1 md:gap-5">
         {data?.map((post) => (
           <div
             className="group flex cursor-pointer flex-col space-y-3 overflow-hidden rounded-lg border p-3 hover:border-gray-500 dark:border-gray-500 dark:hover:border-gray-300 md:p-5"

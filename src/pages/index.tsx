@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   }
   return (
     <Layout title="" className="mt-5 px-5">
-      <div className="md:grid-row-1 grid grid-rows-1 gap-2 space-y-3 overflow-hidden px-4 md:gap-5">
+      <div className="md:grid-row-1 mb-16 grid grid-rows-1 gap-2 space-y-3 overflow-hidden px-4 md:gap-5">
         {data?.map((post) => (
           <div
             className="group flex cursor-pointer flex-col space-y-3 overflow-hidden rounded-md border p-3 hover:border-gray-500 dark:border-gray-500 dark:hover:border-gray-300 md:p-5"
