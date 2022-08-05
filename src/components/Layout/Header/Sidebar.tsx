@@ -37,12 +37,12 @@ function Sidebar() {
                 {notHomepage && <Switcher />}
               </div>
               <div className="mt-4 flex w-full cursor-pointer items-center justify-between px-2 text-gray-700 hover:text-gray-500 dark:text-gray-200">
-                {session ? (
+                {session && (
                   <>
                     <p className="text-sm">{session.user.name}</p>
                     <MenuComponent />
                   </>
-                ) : null}
+                )}
               </div>
               <div className="px-1 py-1">
                 <Link href="/dashboard">
@@ -119,12 +119,14 @@ function Sidebar() {
                   </Menu.Item>
                 </Link>
               </div>
-              {!session ? (
+              {!session && (
                 <div className="px-1 py-1">
                   <Menu.Item>
                     {({ active }: { active: boolean }) => (
                       <button
-                        onClick={() => signIn('google')}
+                        onClick={() =>
+                          signIn('google', { callbackUrl: '/dashboard' })
+                        }
                         className={`${
                           active ? 'bg-violet-500 text-white' : 'text-gray-900'
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm dark:text-gray-200`}
@@ -134,7 +136,7 @@ function Sidebar() {
                     )}
                   </Menu.Item>
                 </div>
-              ) : null}
+              )}
             </Menu.Items>
           </Transition>
         </>

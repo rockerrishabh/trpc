@@ -50,16 +50,14 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   }, [router.events])
   return (
     <SessionProvider session={session}>
-      <div className="supports-backdrop-blur:bg-white/95 z-40 h-screen flex-none bg-white backdrop-blur transition-colors duration-300 dark:bg-slate-900/75 lg:z-50">
-        <ThemeProvider enableSystem={true} attribute="class">
-          <Loading
-            isRouteChanging={state.isRouteChanging}
-            key={state.loadingKey}
-          />
-          <Toaster />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </div>
+      <ThemeProvider enableSystem={true} attribute="class">
+        <Loading
+          isRouteChanging={state.isRouteChanging}
+          key={state.loadingKey}
+        />
+        <Toaster />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </SessionProvider>
   )
 }
